@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <un-pipe sass="app" main="app-acf-fasteditor"></un-pipe>
+    <title>My page</title>
+</head>
+<body> 
+    <div class="@" id="app_acf_fasteditor">
+        <div ref="storage" data-hasforms="true"></div>
+        <button class="@-btn" @click.prevent="onEditMode" v-if="!editMode">{{{icon "settings_alt" title="Edit mode"}}}</button>
+        <div class="@-overlay" v-if="editMode"></div>
+        <div class="@-panel" :class="{'__open': editMode}">
+            <h2 class="@-panel-heading"><span>ACF FastEditor</span>
+            <a @click.prevent="editMode = false" href="#" class="@-panel-close">{{{icon "close_m" title="Close" }}}</a>
+            </h2>
+            <div class="@-tabs">
+                <nav class="@-tabs-nav">
+                    <ul>
+                        <li><a @click.prevent="activeTab = 1" :aria-disabled="activeTab == 1" role="tab" id="acf_fasteditor_tab1" :aria-selected="activeTab == 1" aria-controls="acf_fasteditor_tab_widgets" :class="{'active': activeTab == 1 }" href="#acf_fasteditor_tab_forms">Forms</a></li>
+                        <li><a @click.prevent="activeTab = 2" :aria-disabled="activeTab == 2" href="#acf_fasteditor_tab_widgets" :aria-selected="activeTab == 2" aria-controls="acf_fasteditor_tab_forms" :class="{'active': activeTab == 2 }" id="acf_fasteditor_tab2">Widgets</a></li>
+                    </ul>
+                </nav>
+                <div class="@-tabs-container">                    
+                    <div id="acf_fasteditor_tab_widgets" v-show="activeTab == 1" role="tabpanel" tabindex="0" aria-labelledby="acf_fasteditor_tab1">
+                        <div class="@-alert warning" v-if="!hasForms">
+                            No editable fields found in this document
+                        </div>
+                       <div v-if="hasForms">                       
+                            <iframe :src="getIframeFormsUrl" frameborder="0"></iframe>
+                       </div>
+                    </div>
+                    <div id="acf_fasteditor_tab_forms" v-show="activeTab == 2" role="tabpanel" tabindex="0" aria-labelledby="acf_fasteditor_tab2">
+                        <div class="@-accordion">
+                            <h3 class="@-accordion-heading">
+                                <button id="acf_fasteditor_accordion_btn_slug" aria-disabled="true" aria-expanded="true" aria-controls="acf_fasteditor_accordion_panel_slug"></button>
+                            </h3>
+                            <div role="region" class="@-accordion-region" aria-labelledby="acf_fasteditor_accordion_btn_slug" id="acf_fasteditor_accordion_panel_slug">
+                                <iframe src="" frameborder="0"></iframe>
+                            </div>
+                        </div>
+                                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/index.min.js"></script>
+</body>
+</html>

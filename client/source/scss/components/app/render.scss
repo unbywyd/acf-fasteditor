@@ -1,0 +1,290 @@
+/*------------------------------------------
+*   Optional component render file
+--------------------------------------------
+*   This file should contain the final CSS style rules that will be generated in CSS!
+*   API: https://ungic.com/guide/api/sass.html
+*/
+
+// SASS native modules
+@use "sass:meta" as meta;
+@use "sass:map" as map;
+
+// Component core
+@use ".core" as *;
+
+// Theme module
+@use "ungic.theme" as *;
+
+// Ungic framework modules
+@use "ungic.meta" as un-meta;
+@use "ungic.utils" as un-utils;
+
+// Custom
+@use "functions" as *;
+@use "mixins" as *;
+
+// you must include any style files here
+// or write them in this file
+
+
+@include component {
+  &-acf-fasteditor {
+    font-size: 16px;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    iframe {
+      display: block;
+      width: 100%;
+      border: none;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    &-footer-controls {
+      text-align: center;
+      padding: 1em;
+      border-block-start: 2px solid gray(-.6);
+    }
+    &-cancel {
+      padding: 1em 2em;
+      border: 2px solid color(gray, -.2);
+      border-radius: 6px;
+      font-size: 17px;
+      font-weight: 400;
+      color: color(gray, -.3);
+      background-color: #fff;
+      display: inline-flex;
+      cursor: pointer;
+      &:hover, &:focus {
+        background-color: color(gray, .9)
+      }
+      &:focus {
+        outline: 2px dotted #FFF;
+      }
+    }
+    &-submit {
+      padding: 1em 2em;
+      border: 2px solid color(success, -.2);
+      border-radius: 6px;
+      font-size: 17px;
+      min-width: 140px;
+      justify-content: center;
+      font-weight: 700;
+      color: color(success, -.3);
+      background-color: color(success, .9);
+      display: inline-flex;
+      cursor: pointer;
+      &:hover, &:focus {
+        background-color: color(success, .8)
+      }
+      &:focus {
+        outline: 2px dotted #FFF;
+      }
+    }
+   
+    &-tabs {  
+      position: relative;
+      padding-top: 60px;
+      &-container {
+        height: calc(100vh - 320px);
+        overflow-y: auto;
+      }
+      &-nav {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: gray(-.8);
+        ul {
+          list-style: none;
+          margin: .5em 0 0 0;
+          padding: 0;
+          display: flex;
+          justify-content: center;
+          border-block-end: 2px solid gray(-.6);
+          li {
+            padding: 0;
+            margin: 0 .2em;
+            a {
+              position: relative;
+              top: 2px;
+              display: block;
+              padding: 1em 2em;
+              color: #FFF;
+              text-decoration: none;
+              border: 2px solid transparent;
+              border-radius: 6px 6px 0 0;
+              background-color: gray(-.6);
+              &.active {
+                background-color: gray(-.8);                
+                border-top: 2px solid gray(-.6);
+                border-right: 2px solid gray(-.6);
+                border-left: 2px solid gray(-.6);
+              }
+              &:hover {
+                background-color: gray(-.5);
+              }
+            }
+            display: block;
+          }
+        }
+      }
+    }
+    &-editlink {
+      width: 44px !important;
+      height: 44px !important;
+      position: absolute;
+      display: inline-flex;
+      padding: 0 !important;
+      margin: 0 !important;
+      right: 10px;
+      top: -32px;
+      align-items: center;
+      justify-content: center;
+      background-color: color(primary) !important;
+      color: #FFF !important;
+      font-size: 18px !important;
+      border: 2px solid #000 !important;
+      border-radius: 50%;
+      &:hover {
+        background-color: color(primary, .2) !important;
+      }
+      &:focus {
+        background-color: #fff !important;
+        color: color(primary) !important;
+      }
+    }
+    &-tab-region {
+      padding: 1em;
+    }
+    &-sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      border: 0;
+    }
+    &-alert {
+      display: block;
+      margin: 1em 0;
+      padding: 1em;
+      color: #FFF;
+      &.warning {
+        background-color: color(warning, -.9);
+        color: color(warning, .9);
+      }
+      &.success {
+        background-color: color(success, -.9);
+        color: color(success, .9);
+      }
+      &.info {
+        background-color: color(info, -.9);
+        color: color(info, .9);
+        text-align: center;
+      }
+    }
+    &-widget {
+      padding: 1em;
+      border-block-end: 2px solid gray(-.6);
+      &-editor {
+        padding: 1em;
+        flex-grow: 1;
+        h3 {
+          margin-bottom: .5em;
+          margin-top: 0;
+          color: #FFF;
+        }
+        overflow-y: auto;
+      }
+      &-title {
+        color: #FFF;
+        margin: 0 0 .5em;
+      }
+    }
+    &-overlay {
+      background-color: rgba(#000, .5);
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999998;
+    }
+    &-panel {
+      max-width: 800px;
+      width: 100%;
+      position: fixed;
+      transform: translateX(-100%);
+      transition: all .1s;
+      &.__open {
+        transition: all .3s;
+        transform: translateX(0);
+      }
+      flex-direction: column;
+      display: flex;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 99999999;
+      background-color: gray(-.8);
+      box-shadow: 3px 3px 18px rgba(#000, .3);
+      &-close {
+        text-decoration: none;
+        color: #FFF;
+        font-size: 14px;
+        width: 44px;
+        height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        &:hover {
+          color: gray(.9);
+          &:focus {
+            outline: 2px dotted #FFF;
+          }
+        }
+      }
+      &-heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0;
+        font-size: 1.4em;
+        padding: .5em 1em;
+        color: #FFF;
+        font-weight: 400;
+        border-block-end: 1px solid gray(-.4);
+      }
+    }
+    &-btn {
+      display: inline-flex;
+      position: fixed;
+      z-index: 9999999999;
+      bottom: 20px;
+      left: 20px;
+      align-items: center;
+      cursor: pointer;
+      justify-content: center;
+      border-radius: 50%;
+      width: 70px;
+      height: 70px;
+      color: #FFF!important;
+      font-size: 16px;
+      box-shadow: 3px 3px 12px rgba(#000, .1);
+      background-color: color(primary, -.2) !important;
+      border: 2px solid #000!important;
+      padding: 0!important;
+      &:hover {
+        background-color: color(primary) !important;
+      }
+      &:focus {
+        box-shadow: 0 0 0 2px color(primary, .2)!important;
+        background-color: color(primary, .9)!important;
+        color: color(primary, -.4)!important;
+      }
+    }
+  }
+}
+
